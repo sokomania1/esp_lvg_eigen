@@ -1,0 +1,99 @@
+# meine-lampen.yaml
+lvgl:
+  pages:
+    - id: meine_lampen
+      bg_color: 0x000000
+      pad_all: 0
+      on_load:
+        - lvgl.label.update:
+            id: page_title
+            text: Meine Lampen
+      widgets:
+        - obj:
+            bg_color: 0x000000
+            border_width: 0
+            pad_all: 0
+            pad_top: 50
+            pad_bottom: 50
+            pad_left: 6
+            pad_right: 6
+            width: 100%
+            height: 100%
+            layout:
+              type: FLEX
+              flex_flow: COLUMN_WRAP
+              flex_align_main: START
+              flex_align_cross: START
+              flex_align_track: START
+              pad_column: 8
+              pad_row: 8
+            widgets:
+              # Alle Lichter (breit über beide Spalten)
+              - button:
+                  <<: !include
+                    file: layouts/widgets/buttons/icon_text_buttons/light_group_buttons/widget.yaml
+                    vars:
+                      uid: alle_lichter_2
+                      entity_id: light.alle_lichter_2
+                      text: Alle Lichter
+                      width: 100%
+                      height: 86
+
+              # Stehlampe Bibi
+              - button:
+                  <<: !include
+                    file: layouts/widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: stehlampe_bibi
+                      entity_id: light.stehlampe_bibi
+                      text: Stehlampe Bibi
+                      width: 49%
+                      height: 86
+
+              # Garderobe Licht
+              - button:
+                  <<: !include
+                    file: layouts/widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: garderobe_licht
+                      entity_id: light.garderobe_licht
+                      text: Garderobe
+                      width: 49%
+                      height: 86
+
+              # Wohnzimmerschrank
+              - button:
+                  <<: !include
+                    file: layouts/widgets/buttons/icon_text_buttons/light_buttons/widget.yaml
+                    vars:
+                      uid: wohnzimmerschrank
+                      entity_id: light.licht_wohnzimmerschrank
+                      text: Wohnzimmer
+                      width: 49%
+                      height: 86
+
+# Sensoren für die Lampen
+packages:
+  alle_lichter_2_sensors: !include 
+    file: layouts/widgets/buttons/icon_text_buttons/light_group_buttons/sensors.yaml
+    vars:
+      uid: alle_lichter_2
+      entity_id: light.alle_lichter_2
+
+  stehlampe_bibi_sensors: !include 
+    file: layouts/widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml
+    vars:
+      uid: stehlampe_bibi
+      entity_id: light.stehlampe_bibi
+
+  garderobe_licht_sensors: !include
+    file: layouts/widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml
+    vars:
+      uid: garderobe_licht
+      entity_id: light.garderobe_licht
+
+  wohnzimmerschrank_sensors: !include
+    file: layouts/widgets/buttons/icon_text_buttons/light_buttons/sensors.yaml
+    vars:
+      uid: wohnzimmerschrank
+      entity_id: light.licht_wohnzimmerschrank

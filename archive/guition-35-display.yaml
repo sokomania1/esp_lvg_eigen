@@ -1,0 +1,36 @@
+# guition-35-display.yaml
+
+esphome:
+  name: guition-display
+  friendly_name: Guition Display
+
+# Das Guition verwendet ESP32-S3
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: esp-idf
+
+# Packages einbinden - KORRIGIERE DEN DATEINAMEN!
+packages:
+  device: !include devices/JC3248W535.yaml
+  common: !include common.yaml
+  layout: !include layouts/480x320.yaml
+
+# WLAN-Konfiguration
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  
+  ap:
+    ssid: "Guition Fallback"
+    password: "12345678"
+
+# API für Home Assistant
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+# OTA Updates
+ota:
+  - platform: esphome
+    password: !secret ota_password
